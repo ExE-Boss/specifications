@@ -1,0 +1,17 @@
+# Ignore Everything
+/*
+
+# Sources
+!/docs
+!/theme
+!mkdocs.yml
+
+# Git
+!.gitignore
+!README*
+!LICENSE*
+
+# Continuous Integration Tools
+!.travis.yml
+
+# Unwanted crap
