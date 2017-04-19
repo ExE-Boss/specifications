@@ -1,0 +1,14 @@
+site_name: Specifications - ExE Boss
+theme: readthedocs
+theme_dir: theme
+repo_url: https://github.com/ExE-Boss/specifications
+strict: true
+
+markdown_extensions:
+  - fenced_code
+  - footnotes
+  - smarty
+  - tables
+
+pages:
+  - Home: index.md

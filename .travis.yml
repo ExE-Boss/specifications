@@ -1,0 +1,28 @@
+# Configuration
+env:
+    global:
+        secure: "d/j+E+QTRafPquu1HOU5WVkwH983PvvAu49YFdG8XHFgBz5RPF0my27irduVUQ21xs5n5x+hErvWObacvR9RICYriFgnXizGP328zMH1igkTnMT9MRKxTrPIqfWk573AL66JMCKrHMns+z6O65jHL2QjJEAQblFFqmjyPoE09wEPwnkvE6rfQ6TxWCx3fa9HP8B7rJJZUa2xrbycU+PUsBEPC8sDTgRb7gGhRs19tyAZnpx7Z3Ucpy4J64I9BA9aLwPFTCp+k6F848ZHgHOJx3CSzVW4ZkYqKW2ASzVPSEk4NTEAtimcbn9m3+VHbOvrkW0I/EaD/OS1dOIX1wB0JMbPi8b/qBRQ6igIbHIDMTMg5I2ySRTWAPjdsKT4tLFootAs5L+gm1sK/VF6B3pA5kMlJCJSnwRzuknveIBUZVcBvwihqgocjz/Gtqt0Rcgi0ehv6pw3b57TIHevRK6PEzOn0g93nziyHYBg3Cjma8eUfsxKO8sFa9lL6b8pU+OQwKuz3eZc2EGBbWttUMbFQULGQXtoET0Fs6EN1V9TqTuO6wSwHlO4Fw1WUHfF4NK3/gZcicoUa5ZAXsM1iG7142Fc2hRkn5Hybz2dFOU8AwaPFRJiOEylOUhso5TREVU30p5K22sePtbXMpCl9GOggc/QBPgUzio3Ymjke8Je43A="
+sudo: false
+language: python
+
+# The environment setup script
+install:
+  - pip install mkdocs
+
+# The build script
+script:
+  - git clone -b gh-pages https://${GH_TOKEN}@github.com/ExE-Boss/specifications/ ../gh-pages > /dev/null 2>&1
+  - mkdocs build --clean --site-dir ../gh-pages
+  - cd ../gh-pages
+  - git add -A
+  - git config --global user.email "contact@travis-ci.org"
+  - git config --global user.name "Travis CI"
+  - git commit -am "CI Update" || true
+  - '[ "$TRAVIS_PULL_REQUEST" == "false" -a "$TRAVIS_BRANCH" == "master" ] && git push > /dev/null 2>&1 || true'
+
+# Disable email notifications
+notifications:
+    email: false
+
+# WHO IN THE F# (the programming language) DOESN'T SUPPORT TABS IN 2017? '	' <- tab
+# P.S.: F# (the programming language) also doesn't support tabs, and that's terrible
