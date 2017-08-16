@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Gecko Elevated WebExtensions - Specifications - ExE Boss</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Gecko Elevated WebExtensions";
+    var mkdocs_page_input_path = "WebExtensions/Gecko-Elevated.md";
+    var mkdocs_page_url = "/WebExtensions/Gecko-Elevated/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Specifications - ExE Boss</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">WebExtensions</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">Gecko Elevated WebExtensions</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#gecko-elevated-webextensions-specification-version-010">Gecko Elevated WebExtensions Specification — Version 0.1.0</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#purpose-of-gecko-elevated-webextensions">Purpose of Gecko Elevated WebExtensions</a></li>
+        
+            <li><a class="toctree-l4" href="#manifestjson-keys">manifest.json keys</a></li>
+        
+            <li><a class="toctree-l4" href="#the-elevated-background-page">The elevated background page</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Specifications - ExE Boss</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>WebExtensions &raquo;</li>
+        
+      
+    
+    <li>Gecko Elevated WebExtensions</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/ExE-Boss/specifications/edit/master/docs/WebExtensions/Gecko-Elevated.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="gecko-elevated-webextensions-specification-version-010">Gecko Elevated WebExtensions Specification — Version 0.1.0</h1>
+<p>This document describes the Gecko Elevated WebExtensions specification.</p>
+<p>Gecko Elevated WebExtensions are a non-standard Gecko specific extension
+to the WebExtensions specification allowing WebExtension authors to do things
+for which there are no WebExtension APIs.</p>
+<h2 id="purpose-of-gecko-elevated-webextensions">Purpose of Gecko Elevated WebExtensions</h2>
+<p>Gecko Elevated WebExtensions are intended to allow Mozilla Firefox to retain
+its status as the browser with the most powerful extension API.</p>
+<p>Developers should use WebExtension APIs wherever possible even when writing
+Gecko Elevated WebExtensions to minimize the amount of code that can break
+between Firefox releases, because unlike before, Mozilla will no longer
+be keeping legacy code around, requiring Gecko Elevated WebExtension
+developers to keep pace with Mozilla.</p>
+<h2 id="manifestjson-keys"><code>manifest.json</code> keys</h2>
+<p>Gecko Elevated WebExtensions are denoted by having the
+<code>applications.gecko.elevated_background</code> key.</p>
+<h3 id="the-applicationsgeckoelevated_background-key">The <code>applications.gecko.elevated_background</code> key</h3>
+<p>This key is a JSON object containing the following keys:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Required</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>"page": "&lt;Page URL&gt;"</code></td>
+<td>Required if <code>"scripts"</code> is not present</td>
+<td>Defines the elevated background page.</td>
+</tr>
+<tr>
+<td><code>"scripts": [...]</code></td>
+<td>Required if <code>"page"</code> is not present</td>
+<td>Defines the scripts that are added to the generated elevated background page.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-elevated-background-page">The elevated background page</h2>
+<p>The elevated background page is a special background page in that it has all
+the supported <a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/permissions#Host_permissions">Host</a>
+and <a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/permissions#API_permissions">API</a>
+permissions regardless of what is defined in the <code>"permissions"</code> key.</p>
+<p>This is because the elevated background page has unrestricted access to all
+the browser internals, just like <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/Bootstrapped_extensions">Legacy Bootstrapped Extensions</a>,
+and as such can just call the underlying implementation of the WebExtension
+APIs.</p>
+<p>Note that non-elevated background pages from other extensions can’t message
+elevated background directly, and must instead send the messages using the
+normal background page as a proxy.</p>
+<p>Elevated background pages from other elevated extensions can message each other
+using WebExtension APIs for the same reason as to why elevated background pages
+have access to all WebExtension APIs.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../.." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ExE-Boss/specifications" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+
+</body>
+</html>
