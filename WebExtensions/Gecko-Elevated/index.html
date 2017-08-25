@@ -61,7 +61,7 @@
     <a class="current" href="./">Gecko Elevated WebExtensions</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#gecko-elevated-webextensions-specification-version-010">Gecko Elevated WebExtensions Specification — Version 0.1.0</a></li>
+    <li class="toctree-l3"><a href="#gecko-elevated-webextensions-specification-version-011">Gecko Elevated WebExtensions Specification — Version 0.1.1</a></li>
     
         <ul>
         
@@ -70,6 +70,8 @@
             <li><a class="toctree-l4" href="#manifestjson-keys">manifest.json keys</a></li>
         
             <li><a class="toctree-l4" href="#the-elevated-background-page">The elevated background page</a></li>
+        
+            <li><a class="toctree-l4" href="#api-changes-in-elevated-background-page">API Changes in elevated background page</a></li>
         
         </ul>
     
@@ -118,7 +120,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="gecko-elevated-webextensions-specification-version-010">Gecko Elevated WebExtensions Specification — Version 0.1.0</h1>
+                <h1 id="gecko-elevated-webextensions-specification-version-011">Gecko Elevated WebExtensions Specification — Version 0.1.1</h1>
 <p>This document describes the Gecko Elevated WebExtensions specification.</p>
 <p>Gecko Elevated WebExtensions are a non-standard Gecko specific extension
 to the WebExtensions specification allowing WebExtension authors to do things
@@ -172,6 +174,28 @@ normal background page as a proxy.</p>
 <p>Elevated background pages from other elevated extensions can message each other
 using WebExtension APIs for the same reason as to why elevated background pages
 have access to all WebExtension APIs.</p>
+<h2 id="api-changes-in-elevated-background-page">API Changes in elevated background page</h2>
+<p>In the elevated background page, some APIs have less restrictions than when
+called from the normal background page.</p>
+<h3 id="tabs-api"><code>tabs</code> API</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>create(...)</code></td>
+<td>The <code>url</code> property is unrestricted.</td>
+</tr>
+<tr>
+<td><code>update(...)</code></td>
+<td>The <code>url</code> property is unrestricted.</td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div>
