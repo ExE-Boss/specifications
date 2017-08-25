@@ -1,4 +1,4 @@
-Gecko Elevated WebExtensions Specification — Version 0.1.0
+Gecko Elevated WebExtensions Specification — Version 0.1.1
 ==========================================================
 
 This document describes the Gecko Elevated WebExtensions specification.
@@ -30,7 +30,7 @@ Gecko Elevated WebExtensions are denoted by having the
 This key is a JSON object containing the following keys:
 
 | Key	| Required	| Details	|
-| ----	| ----	| ----	|
+| -----	| -----	| -----	|
 | `"page": "<Page URL>"`	| Required if `"scripts"` is not present	| Defines the elevated background page.	|
 | `"scripts": [...]`	| Required if `"page"` is not present	| Defines the scripts that are added to the generated elevated background page.	|
 
@@ -54,3 +54,16 @@ normal background page as a proxy.
 Elevated background pages from other elevated extensions can message each other
 using WebExtension APIs for the same reason as to why elevated background pages
 have access to all WebExtension APIs.
+
+API Changes in elevated background page
+---------------------------------------
+
+In the elevated background page, some APIs have less restrictions than when
+called from the normal background page.
+
+### `tabs` API
+
+| Function	| Changes	|
+| -----	| -----	|
+| `create(...)`	| The `url` property is unrestricted.	|
+| `update(...)`	| The `url` property is unrestricted.	|
