@@ -1,4 +1,4 @@
-[![Status](https://img.shields.io/website/https/ExE-Boss.GitHub.io/specifications.svg?label=status)](https://ExE-Boss.GitHub.io/specifications)
+[![Status](https://img.shields.io/website/https/ExE-Boss.tech/specifications.svg?label=status)](https://ExE-Boss.tech/specifications)
 [![Build](https://img.shields.io/travis/ExE-Boss/specifications/master.svg)](https://travis-ci.org/ExE-Boss/specifications)
 
 Specifications
