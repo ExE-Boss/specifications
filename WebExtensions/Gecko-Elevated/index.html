@@ -61,7 +61,7 @@
     <a class="current" href="./">Gecko Elevated WebExtensions</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#gecko-elevated-webextensions-specification-version-011">Gecko Elevated WebExtensions Specification — Version 0.1.1</a></li>
+    <li class="toctree-l3"><a href="#gecko-elevated-webextensions-specification-version-012">Gecko Elevated WebExtensions Specification — Version 0.1.2</a></li>
     
         <ul>
         
@@ -72,6 +72,8 @@
             <li><a class="toctree-l4" href="#the-elevated-background-page">The elevated background page</a></li>
         
             <li><a class="toctree-l4" href="#api-changes-in-elevated-background-page">API Changes in elevated background page</a></li>
+        
+            <li><a class="toctree-l4" href="#handle-elevated-background-page-breakage">Handle elevated background page breakage</a></li>
         
         </ul>
     
@@ -120,7 +122,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="gecko-elevated-webextensions-specification-version-011">Gecko Elevated WebExtensions Specification — Version 0.1.1</h1>
+                <h1 id="gecko-elevated-webextensions-specification-version-012">Gecko Elevated WebExtensions Specification — Version 0.1.2</h1>
 <p>This document describes the Gecko Elevated WebExtensions specification.</p>
 <p>Gecko Elevated WebExtensions are a non-standard Gecko specific extension
 to the WebExtensions specification allowing WebExtension authors to do things
@@ -157,6 +159,21 @@ developers to keep pace with Mozilla.</p>
 <td>Required if <code>"page"</code> is not present</td>
 <td>Defines the scripts that are added to the generated elevated background page.</td>
 </tr>
+<tr>
+<td><code>"optional": boolean</code></td>
+<td>Optional, defaults to <code>false</code></td>
+<td>Specifies if this is an optional or required elevated background page.</td>
+</tr>
+<tr>
+<td><code>strict_min_version: "&lt;minimum compatible version&gt;"</code></td>
+<td>Optional, only permitted if this is an optional elevated background page, defaults to the same value as this extension’s <code>strict_min_version</code>.</td>
+<td>Specifies the minimum Firefox version that this optional background page can be used in.</td>
+</tr>
+<tr>
+<td><code>strict_max_version: "&lt;maximum compatible version&gt;"</code></td>
+<td>Optional, only permitted if this is an optional elevated background page, defaults to the same value as this extension’s <code>strict_max_version</code>.</td>
+<td>Specifies the maximum Firefox version that this optional background page can be used in.</td>
+</tr>
 </tbody>
 </table>
 <h2 id="the-elevated-background-page">The elevated background page</h2>
@@ -174,6 +191,16 @@ normal background page as a proxy.</p>
 <p>Elevated background pages from other elevated extensions can message each other
 using WebExtension APIs for the same reason as to why elevated background pages
 have access to all WebExtension APIs.</p>
+<h3 id="optional-elevated-background-page">Optional elevated background page</h3>
+<p>If the elevated background page is marked as optional, it is disabled by default
+and the user is given a prompt during installation if this extension’s elevated
+background page should be enabled or not.</p>
+<p>Whether the optional elevated background page should be loaded or not is also
+configurable from the extension’s options page in <code>about:addons</code>.</p>
+<p>It is also possible for the optional elevated background page to have its own
+separate version compatibility set by Mozilla or the extension author.</p>
+<p>The optional elevated background page is always disabled if it is incompatible
+with this version of Firefox.</p>
 <h2 id="api-changes-in-elevated-background-page">API Changes in elevated background page</h2>
 <p>In the elevated background page, some APIs have less restrictions than when
 called from the normal background page.</p>
@@ -196,6 +223,41 @@ called from the normal background page.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="windows-api"><code>windows</code> API</h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>create(...)</code></td>
+<td>The <code>url</code> property is unrestricted.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="handle-elevated-background-page-breakage">Handle elevated background page breakage</h2>
+<p>Since the elevated background page has access to browser internals,
+the potential for the extension to break due to removed functionality is high.</p>
+<p>Extension breakage is determined by checking for thrown <code>Error</code>s caused
+by the extension trying to call non-existent functions or accessing
+non-existent properties.</p>
+<p>If an extension is determined to be broken, which method to use is determined
+based on the value of the <code>applications.gecko.elevated_background.optional</code>
+key.</p>
+<h3 id="handle-optional-elevated-background-page-breakage">Handle optional elevated background page breakage</h3>
+<p>In the case of optional elevated background page breakage, the user is given
+a prompt to disable the optional elevated background page and report
+the breakage to Mozilla (specifically the AMO moderation team), who will then
+be able to adjust the optional elevated background page’s version compatibility
+setting appropriately.</p>
+<h3 id="handle-required-elevated-background-page-breakage">Handle required elevated background page breakage</h3>
+<p>In the case of required elevated background page breakage, the user is given
+a prompt to disable the extension and report the breakage to Mozilla
+(specifically the AMO moderation team), who will then be able to adjust
+the extensions’s version compatibility setting appropriately.</p>
               
             </div>
           </div>
