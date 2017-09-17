@@ -1,4 +1,4 @@
-Gecko Elevated WebExtensions Specification — Version 0.1.1
+Gecko Elevated WebExtensions Specification — Version 0.1.2
 ==========================================================
 
 This document describes the Gecko Elevated WebExtensions specification.
@@ -33,6 +33,9 @@ This key is a JSON object containing the following keys:
 | -----	| -----	| -----	|
 | `"page": "<Page URL>"`	| Required if `"scripts"` is not present	| Defines the elevated background page.	|
 | `"scripts": [...]`	| Required if `"page"` is not present	| Defines the scripts that are added to the generated elevated background page.	|
+| `"optional": boolean`	| Optional, defaults to `false`	| Specifies if this is an optional or required elevated background page.	|
+| `strict_min_version: "<minimum compatible version>"`	| Optional, only permitted if this is an optional elevated background page, defaults to the same value as this extension’s `strict_min_version`. | Specifies the minimum Firefox version that this optional background page can be used in.	|
+| `strict_max_version: "<maximum compatible version>"`	| Optional, only permitted if this is an optional elevated background page, defaults to the same value as this extension’s `strict_max_version`. | Specifies the maximum Firefox version that this optional background page can be used in.	|
 
 The elevated background page
 ----------------------------
@@ -55,6 +58,21 @@ Elevated background pages from other elevated extensions can message each other
 using WebExtension APIs for the same reason as to why elevated background pages
 have access to all WebExtension APIs.
 
+### Optional elevated background page
+
+If the elevated background page is marked as optional, it is disabled by default
+and the user is given a prompt during installation if this extension’s elevated
+background page should be enabled or not.
+
+Whether the optional elevated background page should be loaded or not is also
+configurable from the extension’s options page in `about:addons`.
+
+It is also possible for the optional elevated background page to have its own
+separate version compatibility set by Mozilla or the extension author.
+
+The optional elevated background page is always disabled if it is incompatible
+with this version of Firefox.
+
 API Changes in elevated background page
 ---------------------------------------
 
@@ -67,3 +85,38 @@ called from the normal background page.
 | -----	| -----	|
 | `create(...)`	| The `url` property is unrestricted.	|
 | `update(...)`	| The `url` property is unrestricted.	|
+
+### `windows` API
+
+| Function	| Changes	|
+| -----	| -----	|
+| `create(...)`	| The `url` property is unrestricted.	|
+
+Handle elevated background page breakage
+----------------------------------------
+
+Since the elevated background page has access to browser internals,
+the potential for the extension to break due to removed functionality is high.
+
+Extension breakage is determined by checking for thrown `Error`s caused
+by the extension trying to call non-existent functions or accessing
+non-existent properties.
+
+If an extension is determined to be broken, which method to use is determined
+based on the value of the `applications.gecko.elevated_background.optional`
+key.
+
+### Handle optional elevated background page breakage
+
+In the case of optional elevated background page breakage, the user is given
+a prompt to disable the optional elevated background page and report
+the breakage to Mozilla (specifically the AMO moderation team), who will then
+be able to adjust the optional elevated background page’s version compatibility
+setting appropriately.
+
+### Handle required elevated background page breakage
+
+In the case of required elevated background page breakage, the user is given
+a prompt to disable the extension and report the breakage to Mozilla
+(specifically the AMO moderation team), who will then be able to adjust
+the extensions’s version compatibility setting appropriately.
