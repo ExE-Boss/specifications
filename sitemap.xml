@@ -3,7 +3,7 @@
 
     
     <url>
-     <loc>/</loc>
+     <loc>https://exe-boss.tech/specifications/</loc>
      <lastmod>2017-11-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -12,8 +12,18 @@
     
         
     <url>
-     <loc>/web-extensions/gecko-elevated/</loc>
+     <loc>https://exe-boss.tech/specifications/web-extensions/gecko-elevated/</loc>
      <lastmod>2017-11-05</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://exe-boss.tech/specifications</loc>
+     <lastmod></lastmod>
      <changefreq>daily</changefreq>
     </url>
         

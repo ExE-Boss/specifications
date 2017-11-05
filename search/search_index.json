@@ -74,6 +74,11 @@
             "location": "/web-extensions/gecko-elevated/#handle-required-elevated-background-page-breakage", 
             "text": "In the case of required elevated background page breakage, the user is given\na prompt to disable the extension and report the breakage to Mozilla\n(specifically the AMO moderation team), who will then be able to adjust\nthe extensions\u2019s version compatibility setting appropriately.", 
             "title": "Handle required elevated background page breakage"
+        }, 
+        {
+            "location": "/WebExtensions/Gecko-Elevated/", 
+            "text": "Redirecting\u2026\n\n\nClick here if you are not redirected.\n\n\nlocation=&rdquo;../../web-extensions/gecko-elevated&rdquo;", 
+            "title": "Gecko Elevated WebExtensions"
         }
     ]
 }
