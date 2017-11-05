@@ -13,4 +13,4 @@ markdown_extensions:
 pages:
   - Home: index.md
   - WebExtensions:
-      - Gecko Elevated WebExtensions: WebExtensions/Gecko-Elevated.md
+      - Gecko Elevated WebExtensions: web-extensions/gecko-elevated.md
