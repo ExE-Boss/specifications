@@ -2,6 +2,7 @@ site_name: Specifications - ExE Boss
 theme:
     name: readthedocs
     custom_dir: theme
+site_url: https://exe-boss.tech/specifications
 repo_url: https://github.com/ExE-Boss/specifications
 strict: true
 
@@ -15,3 +16,7 @@ pages:
   - Home: index.md
   - WebExtensions:
       - Gecko Elevated WebExtensions: web-extensions/gecko-elevated.md
+  - Redirects:
+      - WebExtensions:
+          - Gecko Elevated WebExtensions:
+              WebExtensions/Gecko-Elevated.md
