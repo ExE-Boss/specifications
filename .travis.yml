@@ -11,14 +11,14 @@ install:
 
 # The build script
 script:
-  - git clone -b gh-pages https://${GH_TOKEN}@github.com/ExE-Boss/specifications/ ../gh-pages > /dev/null 2>&1
+  - git clone -b gh-pages -v https://${GH_TOKEN}@github.com/ExE-Boss/specifications/ ../gh-pages
   - mkdocs build --clean --site-dir ../gh-pages
   - cd ../gh-pages
   - git add -A
   - git config --global user.email "contact@travis-ci.org"
   - git config --global user.name "Travis CI"
   - git commit -am "CI Update" || true
-  - '[ "$TRAVIS_PULL_REQUEST" == "false" -a "$TRAVIS_BRANCH" == "master" ] && git push > /dev/null 2>&1 || true'
+  - '[ "$TRAVIS_PULL_REQUEST" == "false" -a "$TRAVIS_BRANCH" == "master" ] && git push || true'
 
 # Disable email notifications
 notifications:
