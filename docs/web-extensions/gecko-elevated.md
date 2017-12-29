@@ -1,5 +1,5 @@
-Gecko Elevated WebExtensions Specification — Version 0.1.2
-==========================================================
+Gecko Elevated WebExtensions Specification — Version 1.0-rc.1
+=============================================================
 
 This document describes the Gecko Elevated WebExtensions specification.
 
